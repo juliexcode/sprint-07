@@ -14,7 +14,8 @@ class TopicController extends Controller
      */
     public function index()
     {
-        //
+        $topics = topic::latest()->paginate(10);
+        return view('zanbob.index', compact('topics'));
     }
 
     /**
