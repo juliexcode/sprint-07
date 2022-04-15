@@ -12,7 +12,6 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -37,7 +36,7 @@
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item dropdown">
                             <a style="color: rgba(44, 117, 255, 1);" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                GENRE
+                                TYPE
                             </a>
                             <ul style="background-color: black;" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a onmouseout="this.style.background='black';this.style.color='rgba(44, 117, 255, 1)';" onmouseover="this.style.background='black';this.style.color='white';" class=" dropdown-item" href="#">Action</a></li>
@@ -68,13 +67,17 @@
                             <a style="color: rgba(44, 117, 255, 1);" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                         @endif
+
+
                         @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
-
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                                <a class="dropdown-item" href="{{route('topics.create')}}">Ajouter un film</a>
+
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
@@ -83,6 +86,8 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
+
+
                             </div>
                         </li>
                         @endguest
