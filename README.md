@@ -1,16 +1,43 @@
-lien figma pour les maquettes https://www.figma.com/file/yR2h3PDxzq1M5XaEb40ffH/Maquette-sprint-07?node-id=0%3A1
+Lien figma pour les maquettes https://www.figma.com/file/yR2h3PDxzq1M5XaEb40ffH/Maquette-sprint-07?node-id=0%3A1
+
+#Diagrammes de séquence UML
 
 ```mermaid
-graph LR
-B((View)) -- Affiche à l'utilisateur --> A[User]
-A -- Envoie des requêtes HTTP --> C{Controller}
-D[(Model)] -- Afficher les données de rendu du modèle --> B
-C -- Envoie des mises à jour --> D
-D -- Récupère les données --> C
-C -- Construit la vue --> B
+sequenceDiagram
+    autonumber
+    Admin->>View: Click "Ajouter" Button [addMovie] 
+    View->>Controller: addMovie () 
+    Controller->>Model: addMovie (table, data) 
+    Model-->>Controller: [added] 
+    Controller-->>View: [Update View] 
+    View-->>Admin: Show Users
 ```
+
 ```mermaid
-graph LR
-A[Laravel] -- Données/messages de session --> B((Site))
-B((Site)) -- Autres demandes Web -->A[Laravel]
+sequenceDiagram
+    autonumber
+    Admin->>View: Click "Supprimer" Button [deleteMovie]
+    View->>Controller: deleteMovie ()
+    Controller->>Model: deleteMovie (table, data)
+    Model-->>Controller: [deleted]
+    Controller-->>View: [Update View]
+    View-->>Admin: Show Users
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    Admin->>Controller: http Request (login_data) 
+    Controller->>Model: request Loginvalidation (login_data) 
+    Model->>Controller: return logvalid 
+
+     alt 
+    Controller-->>View: [Update View (sucess)] 
+    View-->>Controller: [Update View ()] 
+    Controller-->>Admin: http Response 
+
+    Controller-->>View: [Update View (fail)] 
+    View-->>Controller: [Update View ()] 
+    Controller-->>Admin: http Response
+    end
 ```
