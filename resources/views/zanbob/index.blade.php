@@ -19,6 +19,9 @@
 
 
     </div>
+    <div class="d-flex justify-content-center mt-3">
+        {{$topics->links()}}
+    </div>
 </div>
 <style>
     #card {
@@ -41,10 +44,6 @@
 
     a {
         text-decoration: none;
-    }
-
-    a:hover {
-        border: 1px solid rgba(44, 117, 255, 1);
     }
 </style>
 @endsection

@@ -49,6 +49,12 @@
             <small>Posté le {{$comment->created_at->format('d/m/y')}}</small>
             <span>{{$comment->user->name}}</span>
         </div>
+        <form action="{{route('comments.destroy',$comment->id)}}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit">Supprimer mon commentaire</button>
+        </form>
+
     </div>
     @foreach ($comment->comments as $replycomment)
     <div class="card mb-2 ml-5" style="background-color: white;">

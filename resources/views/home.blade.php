@@ -2,22 +2,46 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+    <div class="list">
+        @foreach($topics as $topic)
+        <a href="{{route('topics.show',$topic)}}">
+            <div id="card">
+                <div style="height: 60px;">
+                    <h4 id="titre"> {{$topic->titre}}</h4>
                 </div>
+                <img src="{{asset($topic->poster)}}" width="222px" height="337px">
+
+
+
             </div>
-        </div>
+        </a>
+        @endforeach
+
+
     </div>
 </div>
+<style>
+    #card {
+        text-align: center;
+        width: 250px;
+        height: 420px;
+    }
+
+    .list {
+        justify-content: space-around;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #titre {
+        word-wrap: break-word;
+        color: rgba(44, 117, 255, 1);
+        text-align: center;
+    }
+
+    a {
+        text-decoration: none;
+    }
+</style>
 @endsection

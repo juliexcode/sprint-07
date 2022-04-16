@@ -29,6 +29,16 @@ class commentController extends Controller
         return redirect()->route('topics.show', $topic);
     }
 
+
+    public function destroy(topic $topic, comment $comment)
+    {
+        comment::destroy($comment->id);
+
+        return redirect()->route('topics.show', $topic);
+    }
+
+
+
     public function storeCommentReply(comment $comment)
     {
         request()->validate([
