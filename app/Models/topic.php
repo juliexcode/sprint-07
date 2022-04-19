@@ -7,5 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class topic extends Model
 {
+    protected $guarded = [];
     use HasFactory;
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function comments()
+    {
+        return $this->morphMany('App\Models\comment', 'commentable')->latest();
+    }
 }

@@ -8,11 +8,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Zanbob</title>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -25,32 +24,14 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <a style="color:rgba(44, 117, 255, 1) ;" class="navbar-brand" href="{{ url('/') }}">
+                    Zanbob
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item dropdown">
-                            <a style="color: rgba(44, 117, 255, 1);" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                GENRE
-                            </a>
-                            <ul style="background-color: black;" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a onmouseout="this.style.background='black';this.style.color='rgba(44, 117, 255, 1)';" onmouseover="this.style.background='black';this.style.color='white';" class=" dropdown-item" href="#">Action</a></li>
-                                <li><a style="color: rgba(44, 117, 255, 1);background-color:black;" class="dropdown-item" href="#">Aventure</a></li>
-                                <li><a style="color: rgba(44, 117, 255, 1);background-color:black;" class="dropdown-item" href="#">Comédie</a></li>
-                                <li><a style="color: rgba(44, 117, 255, 1);background-color:black;" class="dropdown-item" href="#">Drame</a></li>
-                                <li><a style="color: rgba(44, 117, 255, 1);background-color:black;" class="dropdown-item" href="#">Fantastique</a></li>
-                                <li><a style="color: rgba(44, 117, 255, 1);background-color:black;" class="dropdown-item" href="#">Horreur</a></li>
-                                <li><a style="color: rgba(44, 117, 255, 1);background-color:black;" class="dropdown-item" href="#">Thriller</a></li>
-                                <li><a style="color: rgba(44, 117, 255, 1);background-color:black;" class="dropdown-item" href="#">Science-fiction</a></li>
-                            </ul>
-                        </li>
-
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -68,13 +49,17 @@
                             <a style="color: rgba(44, 117, 255, 1);" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                         @endif
+
+
                         @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
-
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+
+
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
@@ -83,6 +68,8 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
+
+
                             </div>
                         </li>
                         @endguest
@@ -95,6 +82,17 @@
             @yield('content')
         </main>
     </div>
+    <footer>
+        <a href="{{route('topics.create')}}">Ajouter un film</a>
+
+    </footer>
+
+    <style>
+        footer {
+            background-color: white;
+            height: 200px;
+        }
+    </style>
 </body>
 
 </html>

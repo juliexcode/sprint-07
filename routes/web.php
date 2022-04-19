@@ -16,6 +16,15 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', 'App\Http\Controllers\TopicController@index')->name('zanbob.index');
 Route::resource('topics', 'App\Http\Controllers\TopicController')->except(['index']);
 
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+Route::post('/comments/{topic}', 'App\Http\Controllers\commentController@store')->name('comments.store');
+Route::delete('/comments/{topic}', 'App\Http\Controllers\commentController@destroy')->name('comments.destroy');
+
+
+Route::post('/replycomment/{comment}', 'App\Http\Controllers\commentController@storeCommentReply')->name('comments.storeReply');

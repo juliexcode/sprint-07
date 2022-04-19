@@ -6,7 +6,12 @@ use App\Models\topic;
 use Illuminate\Http\Request;
 
 class TopicController extends Controller
+
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'role:admin'])->except(['index', 'show']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,6 +23,13 @@ class TopicController extends Controller
         return view('zanbob.index', compact('topics'));
     }
 
+    public function indexadmin()
+    {
+        $topics = topic::latest()->paginate(10);
+        return view('zanbob.indexadmin', compact('topics'));
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -25,7 +37,7 @@ class TopicController extends Controller
      */
     public function create()
     {
-        //
+        return view('zanbob.create');
     }
 
     /**
@@ -36,7 +48,18 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $requestData["titre"] = $request->input('titre');
+        $requestData["date"] = $request->input('date');
+        $requestData["realisateur"] = $request->input('realisateur');
+        $requestData["acteur"] = $request->input('acteur');
+        $requestData["genre"] = $request->input('genre');
+        $requestData["synopsis"] = $request->input('synopsis');
+        $filename = time() . $request->file('poster')->getClientOriginalName();
+        $path = $request->file('poster')->storeAs('images', $filename, 'public');
+        $requestData["poster"] = '/storage/' . $path;
+        topic::create($requestData);
+        return redirect()->back()->with("status", "Le film a bien été ajouté!");
     }
 
     /**
@@ -47,7 +70,7 @@ class TopicController extends Controller
      */
     public function show(topic $topic)
     {
-        //
+        return view('zanbob.show', compact('topic'));
     }
 
     /**
@@ -58,7 +81,7 @@ class TopicController extends Controller
      */
     public function edit(topic $topic)
     {
-        //
+        return view('zanbob.edit', compact('topic'));
     }
 
     /**
@@ -70,7 +93,21 @@ class TopicController extends Controller
      */
     public function update(Request $request, topic $topic)
     {
-        //
+        $requestData["titre"] = $request->input('titre');
+        $requestData["date"] = $request->input('date');
+        $requestData["realisateur"] = $request->input('realisateur');
+        $requestData["acteur"] = $request->input('acteur');
+        $requestData["genre"] = $request->input('genre');
+        $requestData["synopsis"] = $request->input('synopsis');
+
+
+        $filename = time() . $request->file('poster')->getClientOriginalName();
+        $path = $request->file('poster')->storeAs('images', $filename, 'public');
+        $requestData["poster"] = '/storage/' . $path;
+        $topic->update($requestData);
+
+
+        return redirect()->back()->with("status", "Le film a bien été modifié!");
     }
 
     /**
@@ -81,6 +118,8 @@ class TopicController extends Controller
      */
     public function destroy(topic $topic)
     {
-        //
+        topic::destroy($topic->id);
+
+        return redirect('/');
     }
 }
