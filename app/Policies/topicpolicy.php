@@ -87,7 +87,7 @@ class topicpolicy
      * @param  \App\Models\topic  $topic
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, topic $topic)
+    public function forceDelete(User $user, Topic $topic)
     {
         //
     }

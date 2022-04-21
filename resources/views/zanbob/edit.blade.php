@@ -42,7 +42,7 @@
                 <br>
                 <label style="color:white;" class="form-label">Poster du film</label>
                 <br>
-                <input id="champs" class="form-control" type="file" id="formFile" name="poster" required accept="image/png, image/jpeg">
+                <input id="champs" class="form-control" type="file" id="formFile" name="poster" accept="image/png, image/jpeg">
                 <br>
                 <img src="{{asset($topic->poster)}}" width="70px" height="70px">
                 <br>

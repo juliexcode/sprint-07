@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\topic;
+use App\Models\Topic;
 
 class HomeController extends Controller
 {
@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $topics = topic::latest()->paginate(10);
+        $topics = Topic::latest()->paginate(10);
         return view('zanbob.index', compact('topics'));
     }
 }
