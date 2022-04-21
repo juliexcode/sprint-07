@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\user;
 use App\Models\topic;
 use Illuminate\Http\Request;
 
@@ -21,12 +22,6 @@ class TopicController extends Controller
     {
         $topics = topic::latest()->paginate(10);
         return view('zanbob.index', compact('topics'));
-    }
-
-    public function indexadmin()
-    {
-        $topics = topic::latest()->paginate(10);
-        return view('zanbob.indexadmin', compact('topics'));
     }
 
 
@@ -58,8 +53,8 @@ class TopicController extends Controller
         $filename = time() . $request->file('poster')->getClientOriginalName();
         $path = $request->file('poster')->storeAs('images', $filename, 'public');
         $requestData["poster"] = '/storage/' . $path;
-        topic::create($requestData);
-        return redirect()->back()->with("status", "Le film a bien été ajouté!");
+        $topic = auth()->user()->topics->create($requestData);
+        return redirect()->route('zanbob.index', $topic->id);
     }
 
     /**
@@ -81,6 +76,7 @@ class TopicController extends Controller
      */
     public function edit(topic $topic)
     {
+        $this->authorize('update', $topic);
         return view('zanbob.edit', compact('topic'));
     }
 
@@ -118,6 +114,8 @@ class TopicController extends Controller
      */
     public function destroy(topic $topic)
     {
+        $this->authorize('delete', $topic);
+
         topic::destroy($topic->id);
 
         return redirect('/');

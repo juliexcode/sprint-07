@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\commentController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+
 Route::get('/', 'App\Http\Controllers\TopicController@index')->name('zanbob.index');
 Route::resource('topics', 'App\Http\Controllers\TopicController')->except(['index']);
 
@@ -23,8 +27,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 
-Route::post('/comments/{topic}', 'App\Http\Controllers\commentController@store')->name('comments.store');
-Route::delete('/comments/{topic}', 'App\Http\Controllers\commentController@destroy')->name('comments.destroy');
-
-
-Route::post('/replycomment/{comment}', 'App\Http\Controllers\commentController@storeCommentReply')->name('comments.storeReply');
+Route::resource('comments', commentController::class);

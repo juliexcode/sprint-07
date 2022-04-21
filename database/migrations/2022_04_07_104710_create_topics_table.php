@@ -22,6 +22,8 @@ class CreateTopicsTable extends Migration
             $table->string('realisateur');
             $table->string('acteur');
             $table->text('synopsis');
+
+
             $table->timestamps();
         });
     }

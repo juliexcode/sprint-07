@@ -24,10 +24,12 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
-                <a style="color:rgba(44, 117, 255, 1) ;" class="navbar-brand" href="{{ url('/') }}">
+                <a style="color: rgba(44, 117, 255, 1);" class="navbar-brand" href="{{ url('/') }}">
                     Zanbob
                 </a>
-
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
@@ -51,6 +53,7 @@
                         @endif
 
 
+
                         @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -58,6 +61,10 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
+
+
+
+                                <a href="{{route('topics.create')}}">Ajouter un film</a>
 
 
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -82,17 +89,36 @@
             @yield('content')
         </main>
     </div>
-    <footer>
-        <a href="{{route('topics.create')}}">Ajouter un film</a>
+    <footer class="mt-auto">
+        <div id="foot" style="text-align: center;">
+
+            <h5>Sprint_07</h5>
+
+            <a href="https://github.com/juliexcode/sprint-07.git" class="btn btn-primary">lien vers le github du projet</a>
+            <div class="row">
+                <div class="col">
+                    Julie
+                </div>
+                <div class="col">
+                    Quentin
+                </div>
+                <div class="col">
+                    Romain
+                </div>
+
+
+            </div>
+        </div>
 
     </footer>
-
-    <style>
-        footer {
-            background-color: white;
-            height: 200px;
-        }
-    </style>
 </body>
 
 </html>
+
+<style>
+    #foot {
+        background-color: rgba(39, 39, 39, 1);
+        color: azure;
+
+    }
+</style>

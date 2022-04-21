@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\topic;
 use App\Models\comment;
-
+use Illuminate\Support\Facades\Log;
 
 class commentController extends Controller
 {
@@ -25,30 +25,18 @@ class commentController extends Controller
         $comment = new comment();
         $comment->content = request('content');
         $comment->user_id = auth()->user()->id;
-        $topic->comments()->save($comment);
+        $topic->comments()->create($comment);
         return redirect()->route('topics.show', $topic);
     }
 
 
-    public function destroy(topic $topic, comment $comment)
+    public function destroy(comment $comment)
     {
-        comment::destroy($comment->id);
-
-        return redirect()->route('topics.show', $topic);
-    }
-
+        $comment->delete();
+        // Log::debug($comment);
+        // comment::destroy($comment);
 
 
-    public function storeCommentReply(comment $comment)
-    {
-        request()->validate([
-            'replycomment' => 'required|min:2'
-        ]);
-
-        $commentReply = new comment();
-        $commentReply->content = request('replycomment');
-        $commentReply->user_id = auth()->user()->id;
-        $comment->comments()->save($commentReply);
         return redirect()->back();
     }
 }
