@@ -10,9 +10,6 @@
                     <h4 id="titre"> {{$topic->titre}}</h4>
                 </div>
                 <img src="{{asset($topic->poster)}}" width="222px" height="337px">
-
-
-
             </div>
         </a>
         @endforeach

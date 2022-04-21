@@ -1,12 +1,5 @@
 @extends('layouts.app')
 
-<script>
-    function toggleReplyComment(id) {
-        let element = document.getElementById('replycomment-' + id);
-        element.classList.toggle('d-none');
-
-    }
-</script>
 
 @section('content')
 <div class="container">
@@ -19,6 +12,8 @@
         </div>
         <div class="col ">
             <h4> {{$topic->titre}}</h4>
+            <br>
+            <p id="date">{{$topic->id}}</p>
             <br>
             <p id="date">{{$topic->date}}</p>
             <br>
@@ -51,28 +46,31 @@
 
     <hr>
     <h5>COMMENTAIRES</h5>
-    @forelse($topic->comments as $comment)
+    @foreach($comments as $comment)
     <div style="background-color: white;">
         {{$comment->content}}
         <div class='d-flex justify-content-between align-items-center'>
             <small>Posté le {{$comment->created_at->format('d/m/y')}}</small>
             <span>{{$comment->user->name}}</span>
         </div>
-        <form action="{{route('destroy',$comment->id)}}" class="delete_form" method="POST">
+        @can('update',$comment)
+        <a href="{{route('comments.edit',$comment)}}">
+            <button>Modifier mon commentaire</button></a>
+        @endcan
+        @can('delete',$comment)
+        <form action="{{route('comments.destroy',$comment->id)}}" class="delete_form" method="POST">
             @csrf
             @method('DELETE')
             <button type="submit">Supprimer mon commentaire</button>
         </form>
-
+        @endcan
     </div>
 
-    @empty
-    <div class="alert alert-info">aucun commentaire pour ce film
+    @endforeach
 
-    </div>
-    @endforelse
     <form action="{{route('comments.store',$topic)}}" method="POST">
         @csrf
+        <input class="visually-hidden" name='inputIdMovie' value="{{$topic->id}}" readonly>
         <label for="content">Votre commentaire</label>
         <textarea required class="form-control" name="content"></textarea>
         <button type="submit">Envoyer mon commentaire</button>

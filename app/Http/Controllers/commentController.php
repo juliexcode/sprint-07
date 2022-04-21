@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\topic;
-use App\Models\comment;
-use Illuminate\Support\Facades\Log;
+use App\Models\Topic;
+use App\Models\Comment;
+use Illuminate\Support\Facades\Auth;
+
 
 class commentController extends Controller
 {
@@ -16,25 +17,74 @@ class commentController extends Controller
         $this->middleware('auth');
     }
 
-    public function store(topic $topic)
+    public function store(Request $request, Topic $topic)
     {
-        request()->validate([
-            'content' => 'required|min:5'
+        $id_movie = trim($request->get('inputIdMovie'));
+        $request->validate([
+            'content' => 'required|min:2',
+
         ]);
 
-        $comment = new comment();
-        $comment->content = request('content');
-        $comment->user_id = auth()->user()->id;
-        $topic->comments()->create($comment);
-        return redirect()->route('topics.show', $topic);
+        $comment = new Comment();
+        $comment->content = $request->content;
+        $comment->user_id = Auth::user()->id;
+        $comment->id_movie = $id_movie;
+        $comment->save();
+
+        $comments['comments'] = Comment::query()
+            ->where('id_movie', '=', $id_movie)
+            ->get();
+
+        $topic['topic'] = Topic::query()
+            ->where('id', '=', $id_movie)
+            ->get();
+
+        return redirect()->back();
     }
 
 
-    public function destroy(comment $comment)
+
+    public function edit(Comment $comment)
     {
+
+        return view('zanbob.comment', compact('comment'));
+    }
+
+
+
+
+    public function update(Request $request, $commentId)
+    {
+
+        $id_movie = trim($request->get('inputIdMovie'));
+        $request->validate([
+            'content' => 'required|min:2',
+
+        ]);
+
+        $comment = Comment::find($commentId);
+        $comment->content = $request->content;
+
+        $comment->save();
+
+        $comments['comments'] = Comment::query()
+            ->where('id_movie', '=', $id_movie)
+            ->get();
+
+        $topic['topic'] = Topic::query()
+            ->where('id', '=', $id_movie)
+            ->get();
+
+        return redirect()->back()->with("status", "Le commentaire a bien été modifié!");
+    }
+
+
+    public function destroy(Comment $comment)
+    {
+        $this->authorize('delete', $comment);
+
         $comment->delete();
-        // Log::debug($comment);
-        // comment::destroy($comment);
+
 
 
         return redirect()->back();

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class topic extends Model
+class Topic extends Model
 {
     protected $guarded = [];
     use HasFactory;
@@ -16,6 +16,6 @@ class topic extends Model
 
     public function comments()
     {
-        return $this->morphMany('App\Models\comment', 'commentable')->latest();
+        return $this->morphMany('App\Models\Comment', 'commentable')->latest();
     }
 }
