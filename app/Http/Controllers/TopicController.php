@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\topic;
+use App\Models\User;
+use App\Models\Topic;
 use Illuminate\Http\Request;
+use App\Models\Comment;
 
 class TopicController extends Controller
 
@@ -21,12 +23,6 @@ class TopicController extends Controller
     {
         $topics = topic::latest()->paginate(10);
         return view('zanbob.index', compact('topics'));
-    }
-
-    public function indexadmin()
-    {
-        $topics = topic::latest()->paginate(10);
-        return view('zanbob.indexadmin', compact('topics'));
     }
 
 
@@ -58,8 +54,8 @@ class TopicController extends Controller
         $filename = time() . $request->file('poster')->getClientOriginalName();
         $path = $request->file('poster')->storeAs('images', $filename, 'public');
         $requestData["poster"] = '/storage/' . $path;
-        topic::create($requestData);
-        return redirect()->back()->with("status", "Le film a bien été ajouté!");
+        $topic = auth()->user()->topics()->create($requestData);
+        return redirect()->route('zanbob.index', $topic->id);
     }
 
     /**
@@ -68,9 +64,13 @@ class TopicController extends Controller
      * @param  \App\Models\topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function show(topic $topic)
+    public function show(Topic $topic)
     {
-        return view('zanbob.show', compact('topic'));
+        $comments['comments'] = Comment::query()
+            ->where('id_movie', '=', $topic->id)
+            ->get();
+
+        return view('zanbob.show', compact('topic'), $comments);
     }
 
     /**
@@ -79,8 +79,9 @@ class TopicController extends Controller
      * @param  \App\Models\topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function edit(topic $topic)
+    public function edit(Topic $topic)
     {
+        $this->authorize('update', $topic);
         return view('zanbob.edit', compact('topic'));
     }
 
@@ -91,7 +92,7 @@ class TopicController extends Controller
      * @param  \App\Models\topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, topic $topic)
+    public function update(Request $request, Topic $topic)
     {
         $requestData["titre"] = $request->input('titre');
         $requestData["date"] = $request->input('date');
@@ -116,8 +117,10 @@ class TopicController extends Controller
      * @param  \App\Models\topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function destroy(topic $topic)
+    public function destroy(Topic $topic)
     {
+        $this->authorize('delete', $topic);
+
         topic::destroy($topic->id);
 
         return redirect('/');
