@@ -28,7 +28,7 @@ class topicpolicy
      * @param  \App\Models\Topic  $topic
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, topic $topic)
+    public function view(User $user, Topic $topic)
     {
         //
     }

@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    <a href="{{route('topics.create')}}"><button> Ajouter un film </button></a>
     <div class="list">
         @foreach($topics as $topic)
         <a href="{{route('topics.show',$topic)}}">
