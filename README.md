@@ -1,9 +1,18 @@
-lien figma pour les maquettes https://www.figma.com/file/yR2h3PDxzq1M5XaEb40ffH/Maquette-sprint-07?node-id=0%3A1
+SPRINT	 07 
 =======
+Site 100% Laravel
+
+
+## Visualiser le site
+Pour pouvoir visualiser notre site: [Zanbob](perianmodely-julie.sprint-07-laravel.sc1lgvu9627.universe.wf)
+ 
+## La maquette
+Lien Figma pour visualiser la maquette: [maquette du site Zanbob](https://www.figma.com/file/yR2h3PDxzq1M5XaEb40ffH/Maquette-sprint-07?node-id=0%3A1)
+
 
 # Diagrammes de séquence UML
 
-## Sequence Ajout de Film
+## Séquence Ajout de Film
 
 ```mermaid
 sequenceDiagram
@@ -15,7 +24,7 @@ sequenceDiagram
     Controller-->>View: [Update View] 
     View-->>Admin: Show Users
 ```
-## Sequence Suppression de Film 
+## Séquence Suppression de Film 
 
 ```mermaid
 sequenceDiagram
@@ -27,7 +36,7 @@ sequenceDiagram
     Controller-->>View: [Update View]
     View-->>Admin: Show Users
 ```
-## Sequence Authentification
+## Séquence Authentification
 
 ```mermaid
 sequenceDiagram
@@ -46,6 +55,3 @@ sequenceDiagram
     Controller-->>Admin: http Response
     end
 ```
-
-
-    
