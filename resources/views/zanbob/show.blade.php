@@ -45,26 +45,28 @@
 <div style=" width:1262px; margin-left:89px;">
     @foreach($comments as $comment)
     <div id="espCom">
-        <div style="padding-left: 20px;">
-            <span style="font-size: 18px;color:white;">{{$comment->user->name}}:</span> <span style="font-size: 15px;padding-left:20px">{{$comment->content}}<span>
+        <div style="padding-left: 20px; width:1100px;padding-top:10px;padding-bottom:5px">
+            <span style="font-size: 18px;color:white;">{{$comment->user->name}} :</span> <span style="font-size: 15px;padding-left:20px;">{{$comment->content}}<span>
                     <div>
 
                         <small>Posté le {{$comment->created_at->format('d/m/y')}}</small>
 
                     </div>
-                    @can('update',$comment)
-                    <div id="btnCom">
-                        <a href="{{route('comments.edit',$comment)}}">
-                            <button id="modBtn">Modifier mon commentaire</button></a>
+                    <div style="justify-content: space-around;">
+                        @can('update',$comment)
+                        <div id="btnCom">
+                            <a href="{{route('comments.edit',$comment)}}">
+                                <button id="modBtn">Modifier</button></a>
+                            @endcan
+                            @can('delete',$comment)
+                            <form action="{{route('comments.destroy',$comment->id)}}" class="delete_form" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button id="supBtn" type="submit">Supprimer</button>
+                            </form>
+                        </div>
                         @endcan
-                        @can('delete',$comment)
-                        <form action="{{route('comments.destroy',$comment->id)}}" class="delete_form" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button id="supBtn" type="submit">Supprimer mon commentaire</button>
-                        </form>
                     </div>
-                    @endcan
         </div>
     </div>
     @endforeach
@@ -151,7 +153,10 @@
     }
 
     #btnCom {
-        display: inline-flex;
+
+        margin-top: -40px;
+        width: 1200px;
+        text-align: end;
     }
 
     #modBtn {
@@ -162,8 +167,7 @@
     }
 
     #supBtn {
-        margin-left: 25px;
-        display: inline;
+        margin-top: 8px;
         border: 1px solid rgba(44, 117, 255, 1);
         background-color: rgba(39, 39, 39, 1);
         border-radius: 5px;
