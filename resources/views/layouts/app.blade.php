@@ -42,13 +42,13 @@
                         @guest
                         @if (Route::has('login'))
                         <li class="nav-item">
-                            <a style="color: rgba(44, 117, 255, 1);" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a style="color: rgba(44, 117, 255, 1);" class="nav-link" href="{{ route('login') }}">Connexion</a>
                         </li>
                         @endif
 
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <a style="color: rgba(44, 117, 255, 1);" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a style="color: rgba(44, 117, 255, 1);" class="nav-link" href="{{ route('register') }}">Inscription</a>
                         </li>
                         @endif
 
@@ -61,10 +61,11 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
+                                <a class="dropdown-item" style="color: rgba(44, 117, 255, 1);" href="{{route('topics.create')}}"> Ajouter un film</a>
 
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                <a style="color: rgba(44, 117, 255, 1);" class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    Déconnexion
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

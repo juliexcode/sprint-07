@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $topics = Topic::latest()->paginate(10);
+        $topics = Topic::latest()->paginate(20);
         return view('zanbob.index', compact('topics'));
     }
 }

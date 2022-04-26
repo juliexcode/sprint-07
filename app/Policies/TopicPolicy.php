@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\User;
 use App\Models\Topic;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use App\Http\Middleware\EnsureUserHasRole;
 
 class topicpolicy
 {
@@ -41,7 +42,6 @@ class topicpolicy
      */
     public function create(User $user)
     {
-        //
     }
 
     /**
