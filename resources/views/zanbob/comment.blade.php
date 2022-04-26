@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="container-md">
+    <a href="{{route('zanbob.index')}}">Retour</a>
+
     @if(session('status'))
     <h6 style="color: rgba(41, 226, 82, 1);">{{session('status')}}</h6>
     @endif

@@ -13,7 +13,7 @@
                 <label style="color:white;" class="form-label">Titre du film</label> <br> <input id="champs" class="form-control" type="text" name="titre" value="{{$topic->titre}}" required autocomplete="off">
 
                 <br>
-                <label style="color:white;" class="form-label">Date de sortie</label> <br> <input id="champs" class="form-control" type="date" name="date" value="{{$topic->date}}" required autocomplete="off">
+                <label style="color:white;" class="form-label">Date de sortie</label> <br> <input id="champs" class="form-control" type="text" name="date" value="{{$topic->date}}" required autocomplete="off">
 
                 <br>
                 <label style="color:white;" class="form-label">Réalisateur(s)</label> <br> <input id="champs" class="form-control " type="text" name="realisateur" value="{{$topic->realisateur}}" required autocomplete="off">
@@ -42,7 +42,7 @@
                 <br>
                 <label style="color:white;" class="form-label">Poster du film</label>
                 <br>
-                <input id="champs" class="form-control" type="file" id="formFile" name="poster" accept="image/png, image/jpeg">
+                <input id="champs" class="form-control" type="file" id="formFile" name="poster" required accept="image/png, image/jpeg">
                 <br>
                 <img src="{{asset($topic->poster)}}" width="70px" height="70px">
                 <br>

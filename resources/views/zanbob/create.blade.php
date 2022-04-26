@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="container-md">
+    <a href="{{route('zanbob.index')}}">Retour</a>
+
     @if(session('status'))
     <h6 style="color: rgba(41, 226, 82, 1);">{{session('status')}}</h6>
     @endif
@@ -12,7 +14,7 @@
                 <label style="color:white;" class="form-label">Titre du film</label> <br> <input id="champs" class="form-control" type="text" name="titre" placeholder="Entrer le titre du film..." required autocomplete="off">
 
                 <br>
-                <label style="color:white;" class="form-label">Date de sortie</label> <br> <input id="champs" class="form-control" type="date" name="date" required autocomplete="off">
+                <label style="color:white;" class="form-label">Date de sortie</label> <br> <input id="champs" class="form-control" type="text" name="date" placeholder="ex: 25 mars 2021" required autocomplete="off">
 
                 <br>
                 <label style="color:white;" class="form-label">Réalisateur(s)</label> <br> <input id="champs" class="form-control " type="text" name="realisateur" placeholder="Entrer le/les réalisateur(s)..." required autocomplete="off">
