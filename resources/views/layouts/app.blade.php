@@ -9,7 +9,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Zanbob</title>
-
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <!-- Fonts -->
@@ -86,23 +85,33 @@
         </main>
     </div>
     <footer class="mt-auto">
-        <div id="foot" style="text-align: center;">
+        <div id="foot" style="text-align: center; ">
 
             <h5>Sprint_07</h5>
 
-            <a href="https://github.com/juliexcode/sprint-07.git" class="btn btn-primary">lien vers le github du projet</a>
-            <div class="row">
+            <a target="_blank" href="https://github.com/juliexcode/sprint-07.git" class="btn btn-primary">lien vers le github du projet</a>
+            <div>
                 <div class="col">
-                    Julie
+
+                    <a href="https://www.linkedin.com/in/julie-perianmodely-602045209/" target="_blank">
+                        @Julie
+                    </a>
+
                 </div>
                 <div class="col">
-                    Quentin
+
+                    <a href="https://www.linkedin.com/in/quentin-louis-462318235/" target="_blank">@Quentin</a>
+
                 </div>
                 <div class="col">
-                    Romain
+
+                    <a href="https://www.linkedin.com/in/romain-felicite-04635721a/" target="_blank">@Romain</a>
+
                 </div>
 
+                <div style="height: 50px;">
 
+                </div>
             </div>
         </div>
 
@@ -115,6 +124,12 @@
     #foot {
         background-color: rgba(39, 39, 39, 1);
         color: azure;
+        padding-top: 20px;
+        border: 1px solid rgba(44, 117, 255, 1);
+        border-left: none;
+    }
 
+    a {
+        text-decoration: none;
     }
 </style>

@@ -40,11 +40,11 @@
                 <label style="color:white;" class="form-label">Synopsis</label> <br> <textarea id="champs" class="form-control" type="text" name="synopsis" required autocomplete="off">{{$topic->synopsis}}</textarea>
 
                 <br>
-                <label style="color:white;" class="form-label">Poster du film</label>
+                <label style="color:white;" class="form-label">Affiche du film</label>
                 <br>
                 <input id="champs" class="form-control" type="file" id="formFile" name="poster" required accept="image/png, image/jpeg">
                 <br>
-                <img src="{{asset($topic->poster)}}" width="70px" height="70px">
+                <img src="{{asset($topic->poster)}}" width="75px" height="90px">
                 <br>
 
 
@@ -62,7 +62,6 @@
     #cadre {
         background-color: rgba(39, 39, 39, 1);
         margin-left: 150px;
-        height: 799px;
         width: 900px;
         border: 4px solid rgba(44, 117, 255, 1);
         border-radius: 30px;
@@ -97,6 +96,7 @@
         color: white;
         width: 113px;
         height: 35px;
+        margin-bottom: 20px;
     }
 </style>
 @endsection
