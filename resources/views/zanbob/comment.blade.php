@@ -16,7 +16,7 @@
 
 
                 <br>
-                <label style="color:white;" class="form-label">ommentaire</label> <br>
+                <label style="color:white;" class="form-label">Modifier mon commentaire</label> <br>
                 <textarea id="champs" class="form-control" type="text" name="content" required autocomplete="off">
                 {{$comment->content}}
                 </textarea>
@@ -33,12 +33,14 @@
     </div>
 
 </div>
+<div style="height: 150px;">
 
+</div>
 <style>
     #cadre {
         background-color: rgba(39, 39, 39, 1);
         margin-left: 150px;
-        height: 799px;
+        height: auto;
         width: 900px;
         border: 4px solid rgba(44, 117, 255, 1);
         border-radius: 30px;
@@ -73,6 +75,7 @@
         color: white;
         width: 113px;
         height: 35px;
+        margin-bottom: 20px;
     }
 </style>
 @endsection

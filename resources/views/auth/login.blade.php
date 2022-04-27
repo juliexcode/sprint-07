@@ -71,7 +71,7 @@
         </div>
     </div>
 </div>
-<div style="height: 150px;">
+<div style="height: 200px;">
 
 </div>
 
@@ -100,7 +100,7 @@
     }
 
     #email::placeholder {
-        color: white;
+        color: rgba(255, 255, 255, 0.5);
     }
 
     #password {
@@ -112,6 +112,6 @@
     }
 
     #password::placeholder {
-        color: white;
+        color: rgba(255, 255, 255, 0.5);
     }
 </style>

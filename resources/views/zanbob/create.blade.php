@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="container-md">
-    <a href="{{route('zanbob.index')}}">Retour</a>
 
     @if(session('status'))
     <h6 style="color: rgba(41, 226, 82, 1);">{{session('status')}}</h6>
@@ -26,7 +25,7 @@
                 <label style="color:white;" for="floatingSelect">Genre du film</label>
                 <br>
                 <select id="champs" class="form-select" name="genre" id="floatingSelect" required>
-                    <option id="champs" selected>Choisir le genre...</option>
+                    <option selected>Choisir le genre...</option>
                     <option id="champs" value="Action">Action</option>
                     <option id="champs" value="Aventure">Aventure</option>
                     <option id="champs" value="Comédie">Comédie</option>
@@ -41,7 +40,7 @@
                 <label style="color:white;" class="form-label">Synopsis</label> <br> <textarea id="champs" class="form-control" type="text" name="synopsis" placeholder="Enter the synopsis..." required autocomplete="off"></textarea>
 
                 <br>
-                <label style="color:white;" for="formFile" class="form-label">Poster du film</label>
+                <label style="color:white;" for="formFile" class="form-label">Affiche du film</label>
                 <input id="champs" class="form-control" type="file" id="formFile" name="poster" required accept="image/png, image/jpeg">
                 <br>
 
@@ -60,7 +59,6 @@
     #cadre {
         background-color: rgba(39, 39, 39, 1);
         margin-left: 150px;
-        height: 799px;
         width: 900px;
         border: 4px solid rgba(44, 117, 255, 1);
         border-radius: 30px;
@@ -81,7 +79,7 @@
     }
 
     #champs::placeholder {
-        color: white;
+        color: rgba(255, 255, 255, 0.5);
     }
 
 
@@ -95,6 +93,7 @@
         color: white;
         width: 113px;
         height: 35px;
+        margin-bottom: 20px;
     }
 </style>
 @endsection
