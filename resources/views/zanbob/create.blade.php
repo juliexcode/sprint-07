@@ -37,7 +37,7 @@
                 </select>
 
                 <br>
-                <label style="color:white;" class="form-label">Synopsis</label> <br> <textarea id="champs" class="form-control" type="text" name="synopsis" placeholder="Enter the synopsis..." required autocomplete="off"></textarea>
+                <label style="color:white;" class="form-label">Synopsis</label> <br> <textarea id="champs" class="form-control" type="text" name="synopsis" placeholder="Entrer le synopsis..." required autocomplete="off"></textarea>
 
                 <br>
                 <label style="color:white;" for="formFile" class="form-label">Affiche du film</label>
