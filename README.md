@@ -12,47 +12,6 @@ Lien Figma pour visualiser la maquette: [maquette du site Zanbob](https://www.fi
 
 # Diagrammes de séquence UML
 
-## Séquence Ajout de Film
-
-```mermaid
-sequenceDiagram
-    autonumber
-    Navigateur->>View: Click "Ajouter" Button [store] 
-    View->>Controller: store () 
-    Controller->>Model: store (table, data) 
-    Model-->>Controller: [added] 
-    Controller-->>View: [Update View] 
-    View-->>Navigateur: Show Users
-```
-## Séquence Suppression de Film 
-
-```mermaid
-sequenceDiagram
-    autonumber
-    Navigateur->>View: Click "Supprimer" Button [destroy]
-    View->>Controller: destroy ()
-    Controller->>Model: destroy (table, data)
-    Model-->>Controller: [deleted]
-    Controller-->>View: [Update View]
-    View-->>Navigateur: Show Users
-```
-## Séquence Authentification
-
-```mermaid
-sequenceDiagram
-    autonumber
-    Navigateur->>Controller: http Request (login_data) 
-    Controller->>Model: request AUTH (login_data) 
-    Model->>Controller: return logvalid 
-
-     alt 
-     
-     
-     
-     
-     Wireframe du site : https://www.figma.com/file/LUPdLjdUROYCjkWCUlVd4f/Sprint_07?node-id=0%3A1
-
-
 # Création d'un poste
 
 ```mermaid
