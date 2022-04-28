@@ -17,31 +17,31 @@ Lien Figma pour visualiser la maquette: [maquette du site Zanbob](https://www.fi
 ```mermaid
 sequenceDiagram
     autonumber
-    Admin->>View: Click "Ajouter" Button [store] 
+    Navigateur->>View: Click "Ajouter" Button [store] 
     View->>Controller: store () 
     Controller->>Model: store (table, data) 
     Model-->>Controller: [added] 
     Controller-->>View: [Update View] 
-    View-->>Admin: Show Users
+    View-->>Navigateur: Show Users
 ```
 ## Séquence Suppression de Film 
 
 ```mermaid
 sequenceDiagram
     autonumber
-    Admin->>View: Click "Supprimer" Button [destroy]
+    Navigateur->>View: Click "Supprimer" Button [destroy]
     View->>Controller: destroy ()
     Controller->>Model: destroy (table, data)
     Model-->>Controller: [deleted]
     Controller-->>View: [Update View]
-    View-->>Admin: Show Users
+    View-->>Navigateur: Show Users
 ```
 ## Séquence Authentification
 
 ```mermaid
 sequenceDiagram
     autonumber
-    Admin->>Controller: http Request (login_data) 
+    Navigateur->>Controller: http Request (login_data) 
     Controller->>Model: request AUTH (login_data) 
     Model->>Controller: return logvalid 
 
@@ -164,10 +164,10 @@ Vue->>Navigateur: retourne un message de suppression
 
     Controller-->>View: [Update show (sucess)] 
     View-->>Controller: [Update show ()] 
-    Controller-->>Admin: http Response 
+    Controller-->>Navigateur: http Response 
 
     Controller-->>View: [Update show (fail)] 
     View-->>Controller: [Update show ()] 
-    Controller-->>Admin: http Response
+    Controller-->>Navigateur: http Response
     end
 ```
