@@ -37,51 +37,52 @@
             </div>
         </div>
     </div>
-</div>
-<br>
 
-<hr>
-<h5 style="color: white;margin-left:89px;">ESPACE COMMENTAIRES</h5>
-<div style=" width:1262px; margin-left:89px;">
-    @foreach($comments as $comment)
-    <div id="espCom">
-        <div style="padding-left: 20px; width:1100px;padding-top:10px;padding-bottom:5px">
-            <span style="font-size: 18px;color:white;text-transform:capitalize;font-style:italic;">{{$comment->user->name}} :</span>
-            <span style="font-size: 15px;padding-left:20px;">{{$comment->content}}</span>
+    <br>
 
-            <div style="justify-content: space-around;">
-                @can('update',$comment)
-                <div id="btnCom">
-                    <a href="{{route('comments.edit',$comment)}}">
-                        <button id="modBtn">Modifier</button></a>
+    <hr>
+    <h5 style="color: white;margin-left:20px;">ESPACE COMMENTAIRES</h5>
+    <div style=" width:100%; margin-left:20px;">
+        @foreach($comments as $comment)
+        <div id="espCom">
+            <div style="padding-left: 20px; width:100%;padding-top:10px;padding-bottom:5px">
+                <span style="font-size: 18px;color:white;text-transform:capitalize;font-style:italic;">{{$comment->user->name}} :</span>
+                <span style="font-size: 15px;padding-left:20px;">{{$comment->content}}</span>
+
+                <div style="justify-content: space-around;">
+                    @can('update',$comment)
+                    <div id="btnCom">
+                        <a href="{{route('comments.edit',$comment)}}">
+                            <button id="modBtn">Modifier</button></a>
+                        @endcan
+                        @can('delete',$comment)
+                        <form action="{{route('comments.destroy',$comment->id)}}" class="delete_form" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button id="supBtn" type="submit">Supprimer</button>
+                        </form>
+                    </div>
                     @endcan
-                    @can('delete',$comment)
-                    <form action="{{route('comments.destroy',$comment->id)}}" class="delete_form" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button id="supBtn" type="submit">Supprimer</button>
-                    </form>
-                </div>
-                @endcan
-                <div>
+                    <div>
 
-                    <small style="font-style:italic;">Posté le {{$comment->created_at->format('d/m/y')}}</small>
+                        <small style="font-style:italic;">Posté le {{$comment->created_at->format('d/m/y')}}</small>
 
+                    </div>
                 </div>
             </div>
         </div>
+        @endforeach
     </div>
-    @endforeach
-</div>
-<br>
+    <br>
 
-<div style="width:1262px; margin-left:89px; margin-top:50px">
-    <form action="{{route('comments.store',$topic)}}" method="POST">
-        @csrf
-        <input class="visually-hidden" name='inputIdMovie' value="{{$topic->id}}" readonly>
-        <textarea id="com" required class="form-control" name="content" placeholder="Écrivez votre commentaire ici"></textarea>
-        <button id="envyCom" type="submit">Soumettre mon commentaire</button>
-    </form>
+    <div style="width:100%; margin-left:20px; margin-top:50px">
+        <form action="{{route('comments.store',$topic)}}" method="POST">
+            @csrf
+            <input class="visually-hidden" name='inputIdMovie' value="{{$topic->id}}" readonly>
+            <textarea id="com" required class="form-control" name="content" placeholder="Écrivez votre commentaire ici"></textarea>
+            <button id="envyCom" type="submit">Soumettre mon commentaire</button>
+        </form>
+    </div>
 </div>
 </div>
 @endsection
